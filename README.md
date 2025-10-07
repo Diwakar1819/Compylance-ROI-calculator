@@ -7,22 +7,13 @@
     <!-- Load Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for professional aesthetic and dark mode readability */
+        /* Custom font and dark background */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Gray 900 */
             color: #d1d5db; /* Gray 300 */
         }
-        .container {
-            max-width: 800px;
-        }
-        .section-title {
-            position: relative;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-        /* Underline for section titles */
+        /* Custom style for the section title underline - necessary as pseudo-elements can't be done with Tailwind classes directly */
         .section-title::after {
             content: '';
             position: absolute;
@@ -33,25 +24,23 @@
             background-color: #60a5fa; /* Blue 400 - bright contrast */
             border-radius: 9999px;
         }
-        .code-block {
-            background-color: #030712; /* Darker than body/sections */
-            color: #d1fae5; /* Light green for code text */
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            white-space: pre; 
-            font-family: 'Fira Code', 'Monospace', monospace;
-        }
-        .btn-link {
-            transition: color 0.2s;
-        }
-        .btn-link:hover {
-            color: #3b82f6; /* Blue 500 */
-        }
     </style>
+    <script>
+        // Setup configuration for Tailwind (optional but good practice)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'code-bg': '#030712', /* Darker than body/sections */
+                        'code-text': '#d1fae5', /* Light green for code text */
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="p-4 sm:p-8">
-    <div class="container mx-auto">
+    <div class="max-w-4xl mx-auto">
         <!-- Header / Project Title -->
         <header class="text-center mb-12 py-6 bg-gray-800 shadow-2xl rounded-xl border-t-4 border-blue-400">
             <h1 class="text-4xl font-extrabold text-white mb-2">
@@ -69,7 +58,7 @@
         </header>
         <!-- Project Overview & Goal -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Project Overview & Goal
             </h2>
             <p class="text-gray-300 leading-relaxed">
@@ -81,7 +70,7 @@
         </section>
         <!-- Key Features -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Key Features
             </h2>
             <ul class="list-disc pl-5 space-y-3 text-gray-300">
@@ -101,7 +90,7 @@
         </section>
         <!-- Tech Stack -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Technology Stack
             </h2>
             <div class="flex flex-wrap gap-3 mt-4">
@@ -136,7 +125,7 @@
         </section>
         <!-- API Endpoints -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 API Endpoints (REST)
             </h2>
             <p class="text-gray-300 mb-4">
@@ -154,27 +143,27 @@
                     <tbody class="bg-gray-900 divide-y divide-gray-700 text-sm text-gray-300">
                         <tr>
                             <td class="px-4 py-2 whitespace-nowrap"><span class="font-bold text-green-400">POST</span></td>
-                            <td class="px-4 py-2 whitespace-nowrap"><code>/simulate</code></td>
+                            <td class="px-4 py-2 whitespace-nowrap"><code class="bg-gray-700 text-code-text p-1 rounded">/simulate</code></td>
                             <td class="px-4 py-2 whitespace-nowrap">Run simulation and return JSON results.</td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 whitespace-nowrap"><span class="font-bold text-blue-400">POST</span></td>
-                            <td class="px-4 py-2 whitespace-nowrap"><code>/scenarios</code></td>
+                            <td class="px-4 py-2 whitespace-nowrap"><code class="bg-gray-700 text-code-text p-1 rounded">/scenarios</code></td>
                             <td class="px-4 py-2 whitespace-nowrap">Save a new scenario.</td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 whitespace-nowrap"><span class="font-bold text-blue-400">GET</span></td>
-                            <td class="px-4 py-2 whitespace-nowrap"><code>/scenarios</code></td>
+                            <td class="px-4 py-2 whitespace-nowrap"><code class="bg-gray-700 text-code-text p-1 rounded">/scenarios</code></td>
                             <td class="px-4 py-2 whitespace-nowrap">List all saved scenarios.</td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 whitespace-nowrap"><span class="font-bold text-blue-400">GET</span></td>
-                            <td class="px-4 py-2 whitespace-nowrap"><code>/scenarios/:id</code></td>
+                            <td class="px-4 py-2 whitespace-nowrap"><code class="bg-gray-700 text-code-text p-1 rounded">/scenarios/:id</code></td>
                             <td class="px-4 py-2 whitespace-nowrap">Retrieve a specific scenario detail.</td>
                         </tr>
                         <tr>
                             <td class="px-4 py-2 whitespace-nowrap"><span class="font-bold text-red-400">POST</span></td>
-                            <td class="px-4 py-2 whitespace-nowrap"><code>/report/generate</code></td>
+                            <td class="px-4 py-2 whitespace-nowrap"><code class="bg-gray-700 text-code-text p-1 rounded">/report/generate</code></td>
                             <td class="px-4 py-2 whitespace-nowrap">Generate a PDF/HTML report (requires email).</td>
                         </tr>
                     </tbody>
@@ -183,7 +172,7 @@
         </section>
         <!-- Setup Instructions -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Local Development Setup
             </h2>
             <p class="mb-4 text-gray-300">
@@ -191,24 +180,24 @@
             </p>
             <div class="mb-6">
                 <h3 class="font-semibold text-lg text-white mb-2">1. Clone the Repository:</h3>
-                <pre class="code-block"><code>git clone &lt;YOUR_GIT_URL&gt;
+                <pre class="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto whitespace-pre font-mono"><code>git clone &lt;YOUR_GIT_URL&gt;
 cd &lt;YOUR_PROJECT_NAME&gt;</code></pre>
             </div>
             <div class="mb-6">
                 <h3 class="font-semibold text-lg text-white mb-2">2. Install Dependencies:</h3>
-                <pre class="code-block"><code>npm i</code></pre>
+                <pre class="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto whitespace-pre font-mono"><code>npm i</code></pre>
             </div>
             <div class="mb-6">
                 <h3 class="font-semibold text-lg text-white mb-2">3. Start the Development Server:</h3>
                 <p class="text-sm text-gray-400 mb-2">
                     This command starts the development server with auto-reloading and an instant preview.
                 </p>
-                <pre class="code-block"><code>npm run dev</code></pre>
+                <pre class="bg-code-bg text-code-text p-4 rounded-lg overflow-x-auto whitespace-pre font-mono"><code>npm run dev</code></pre>
             </div>
         </section>
         <!-- Deployment and Hosting -->
         <section class="mb-12 p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Deployment
             </h2>
             <p class="text-gray-300">
@@ -225,7 +214,7 @@ cd &lt;YOUR_PROJECT_NAME&gt;</code></pre>
         </section>
         <!-- Contributing -->
         <section class="p-6 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="section-title text-2xl font-bold text-white">
+            <h2 class="section-title text-2xl font-bold text-white relative pb-2 mb-6 inline-block">
                 Contributing
             </h2>
             <p class="text-gray-300 mb-4">
