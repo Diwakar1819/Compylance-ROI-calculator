@@ -118,13 +118,6 @@ const Index = () => {
   const handleGenerateReport = () => {
     if (!currentInput || !currentResults) return;
 
-    // Create HTML report
-    const reportWindow = window.open('', '_blank');
-    if (!reportWindow) {
-      toast.error("Please allow popups to view the report");
-      return;
-    }
-
     const reportHTML = `
 <!DOCTYPE html>
 <html lang="en">
@@ -312,11 +305,19 @@ const Index = () => {
 </html>
     `;
 
-    reportWindow.document.write(reportHTML);
-    reportWindow.document.close();
+    // Create a blob and download link
+    const blob = new Blob([reportHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ROI-Report-${currentInput.scenario_name.replace(/[^a-z0-9]/gi, '-')}-${new Date().toISOString().split('T')[0]}.html`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
     
-    toast.success("Report generated!", {
-      description: "The report has opened in a new window",
+    toast.success("Report downloaded!", {
+      description: "Check your downloads folder for the HTML report",
     });
   };
 
@@ -344,9 +345,9 @@ const Index = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="calculator" className="animate-fade-in">
+          <TabsContent value="calculator" className="animate-fade-in-up">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
-              <Card className="shadow-accent border-border/50">
+              <Card className="shadow-accent border-border/50 transition-all hover:shadow-accent/50 hover:border-primary/30">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calculator className="h-5 w-5 text-primary" />
@@ -369,9 +370,9 @@ const Index = () => {
                     onDownload={handleGenerateReport}
                   />
                 ) : (
-                  <Card className="shadow-accent border-border/50">
+                  <Card className="shadow-accent border-border/50 transition-all hover:border-accent/30">
                     <CardContent className="pt-6">
-                      <div className="text-center py-12 text-muted-foreground">
+                      <div className="text-center py-12 text-muted-foreground animate-float">
                         <FileText className="h-16 w-16 mx-auto mb-4 opacity-50" />
                         <p className="text-lg">Enter your data to see real-time ROI analysis</p>
                       </div>
@@ -382,8 +383,8 @@ const Index = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="scenarios" className="animate-fade-in">
-            <Card className="max-w-6xl mx-auto border-border/50">
+          <TabsContent value="scenarios" className="animate-fade-in-up">
+            <Card className="max-w-6xl mx-auto border-border/50 transition-all hover:border-accent/30">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <History className="h-5 w-5 text-accent" />

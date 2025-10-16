@@ -13,10 +13,10 @@ interface ResultsDisplayProps {
 
 export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in-up">
       {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-gradient-success text-secondary-foreground shadow-success border-0">
+        <Card className="bg-gradient-success text-secondary-foreground shadow-success border-0 animate-scale-bounce transition-all hover:scale-105 hover:shadow-success/50">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium">Monthly Savings</CardTitle>
@@ -31,7 +31,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-primary text-primary-foreground shadow-primary border-0">
+        <Card className="bg-gradient-primary text-primary-foreground shadow-primary border-0 animate-scale-bounce [animation-delay:100ms] transition-all hover:scale-105 hover:shadow-primary/50">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium">ROI Percentage</CardTitle>
@@ -46,7 +46,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-accent text-accent-foreground shadow-accent border-0">
+        <Card className="bg-gradient-accent text-accent-foreground shadow-accent border-0 animate-scale-bounce [animation-delay:200ms] transition-all hover:scale-105 hover:shadow-accent/50">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium">Payback Period</CardTitle>
@@ -61,7 +61,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
           </CardContent>
         </Card>
 
-        <Card className="bg-card border-primary/50 border-2">
+        <Card className="bg-card border-primary/50 border-2 animate-scale-bounce [animation-delay:300ms] transition-all hover:scale-105 hover:border-primary">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium">Net Savings</CardTitle>
@@ -80,7 +80,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
       {/* Charts */}
       <div className="grid grid-cols-1 gap-6">
         {/* Cumulative Savings Chart */}
-        <Card className="border-border/50">
+        <Card className="border-border/50 animate-slide-in-right [animation-delay:400ms] transition-all hover:border-secondary/50">
           <CardHeader>
             <CardTitle>Cumulative Savings Over Time</CardTitle>
             <CardDescription>Real-time visualization of accumulating savings</CardDescription>
@@ -115,7 +115,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
         </Card>
 
         {/* Monthly Cost Comparison */}
-        <Card className="border-border/50">
+        <Card className="border-border/50 animate-slide-in-right [animation-delay:500ms] transition-all hover:border-accent/50">
           <CardHeader>
             <CardTitle>Monthly Cost Comparison</CardTitle>
             <CardDescription>Manual vs. Automated costs over 12 months</CardDescription>
@@ -147,7 +147,7 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
       </div>
 
       {/* Detailed Breakdown */}
-      <Card className="border-border/50">
+      <Card className="border-border/50 animate-fade-in-up [animation-delay:600ms] transition-all hover:border-primary/30">
         <CardHeader>
           <CardTitle>Detailed Breakdown</CardTitle>
           <CardDescription>Complete financial and performance analysis</CardDescription>
@@ -202,17 +202,17 @@ export function ResultsDisplay({ results, onSave, onDownload }: ResultsDisplayPr
       </Card>
 
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-3 justify-end">
+      <div className="flex flex-col sm:flex-row gap-3 justify-end animate-fade-in [animation-delay:700ms]">
         {onSave && (
-          <Button onClick={onSave} variant="outline" size="lg" className="border-border/50">
+          <Button onClick={onSave} variant="outline" size="lg" className="border-border/50 transition-all hover:scale-105 hover:border-primary/50">
             <Save className="mr-2 h-5 w-5" />
             Save Scenario
           </Button>
         )}
         {onDownload && (
-          <Button onClick={onDownload} className="bg-gradient-accent shadow-accent border-0" size="lg">
+          <Button onClick={onDownload} className="bg-gradient-accent shadow-accent border-0 transition-all hover:scale-105 hover:shadow-accent/70" size="lg">
             <Download className="mr-2 h-5 w-5" />
-            Generate HTML Report
+            Download Report
           </Button>
         )}
       </div>
