@@ -1,44 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoicing ROI Simulator</title>
-    <!-- Load Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font and dark background */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Gray 900 */
-            color: #d1d5db; /* Gray 300 */
-        }
-        /* Custom style for the section title underline - necessary as pseudo-elements can't be done with Tailwind classes directly */
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50%;
-            height: 4px;
-            background-color: #60a5fa; /* Blue 400 - bright contrast */
-            border-radius: 9999px;
-        }
-    </style>
-    <script>
-        // Setup configuration for Tailwind (optional but good practice)
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'code-bg': '#030712', /* Darker than body/sections */
-                        'code-text': '#d1fae5', /* Light green for code text */
-                    }
-                }
-            }
-        }
-    </script>
-</head>
+
 <body class="p-4 sm:p-8">
     <div class="max-w-4xl mx-auto">
         <!-- Header / Project Title -->
